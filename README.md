@@ -92,7 +92,7 @@ SELECT * FROM staff WHERE performance_rating BETWEEN 8 AND 10 ORDER BY last_name
 SELECT * FROM staff WHERE performance_rating NOT BETWEEN 0 AND 7 ORDER BY last_name;
 ```
 
-- Specify the search parameters for the operator `WHERE` (`IN` parameter)
+- Specify the search parameters for the operator `WHERE` (exact match - the specified value **fully matches** the field value - `IN` parameter)
 ```SQL
 SELECT * FROM table-name WHERE column-name IN (avalue-1, value-2);
 ---
@@ -100,3 +100,28 @@ SELECT * FROM staff WHERE salary IN (1000, 2000, 3000);
 ---
 SELECT * FROM staff WHERE salary NOT IN (1000, 2000, 3000);
 ```
+
+- Specify the search parameters for the operator `WHERE` (partial match - the specified value **partially matches** the value of the field - `LIKE` parameter)
+
+```SQL
+SELECT * FROM table-name WHERE column-name LIKE 'Value%';
+---
+SELECT * FROM staff WHERE first_name LIKE 'Jo%';
+```
+The `I` prefix in the `LIKE` parameter allows you to ignore the case of letters in the search results:
+
+```SQL
+SELECT * FROM staff WHERE first_name ILIKE 'Jo%';
+```
+search patterns:
+
+String variable | Action
+--- | --- 
+% | any length string 
+_ | any single symbol
+[] | symbol range
+^ | excluding symbol range
+
+
+
+
